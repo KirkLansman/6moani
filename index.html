@@ -80,12 +80,12 @@ input[type=button] {
 </div>
 				
 <script>
+var password = "You can lead a horse to margaritas, but you can't make him drink.";
 var passwordInput = document.getElementById("passwordInput");
 var button = document.getElementById("button");
 var message = document.getElementById("message");
 
 var failedMessages = [
-  "Sorry, you didn't get it. Also, I think your shoe is untied.",
   "I've relayed the message to our agent in the feld. He then relayed it to his captors, and was immediately killed... so we're thinking that probably wasn't the right password. In retrospect, we should have told you what this was about. Maybe you would have been a bit more careful. Our bad.",
   "I plugged that into my Skype account, and it still says I need a Microsoft ID or something stupid like that. Why would I need a Microsoft ID <i>and</i> a Skype account, right? I only wanted to talk to my family, and now I can't log in anymore! Anyway, that password didn't work for me. Got any others?",
   "Yes! Fantastic! That sounds like an excellent name for my new pet wallaby. It is, however, not the password I'm looking for. Keep 'em coming.",
@@ -95,7 +95,7 @@ var failedMessages = [
 ];
 var failedMessageIndex = 0;
 
-var successMessage = '<img src="https://raw.githubusercontent.com/KirkLansman/6moani/master/wildflowers.jpg" width="250"><br><img src="https://raw.githubusercontent.com/KirkLansman/6moani/master/wildflower_kiss.jpg" width="250">';
+var successMessage = '<font color="green"><h1>Correct!</h1></font><p>The last piece of the puzzle is 6.<br>Go to my parking spot at AVA Burbank.</p><p>Also, here are some cute photos of us.</p><img src="https://raw.githubusercontent.com/KirkLansman/6moani/master/wildflowers.jpg" width="250"><br><img src="https://raw.githubusercontent.com/KirkLansman/6moani/master/wildflower_kiss.jpg" width="250">';
 
 var showMessage = function(text) {
   message.style.display = "block";
@@ -103,8 +103,8 @@ var showMessage = function(text) {
 }
 
 button.onclick = function() {
-  var password = passwordInput.value;
-  if (password == "hello") {
+  var input = passwordInput.value;
+  if (input == password) {
     showMessage(successMessage);
   
   } else {
