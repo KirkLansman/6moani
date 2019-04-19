@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Style all input fields */
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+/* Style the submit button */
+input[type=button] {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Style the container for inputs */
+.container {
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#message p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+  content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "✖";
+}
+</style>
+</head>
+<body>
+
+<h2>Six Month Anniversary</h2>
+<h3>Easter Sunday 2019</h3>
+
+<div class="container">
+  <label for="password">What's the password?</label>
+  <input type="text" id="passwordInput" name="passwordInput" required>
+  <input type="button" id="button" value="Submit">
+</div>
+
+<div id="message">
+  <h3>Password must contain the following:</h3>
+</div>
+				
+<script>
+var passwordInput = document.getElementById("passwordInput");
+var button = document.getElementById("button");
+var message = document.getElementById("message");
+
+var failedMessages = [
+  "Sorry, that wasn't right. You're cute, though.",
+  "Sorry, you didn't get it. Also, I think your shoe is untied.",
+  "I've relayed the message to our agent in the feld. He then relayed it to his captors, and was immediately killed... so we're thinking that probably wasn't the right password. In retrospect, we should have told you what this was about. Maybe you would have been a bit more careful. Our bad.",
+  "I plugged that into my Skype account, and it still says I need a Microsoft ID or something stupid like that. Why would I need a Microsoft ID <i>and</i> a Skype account, right? I only wanted to talk to my family, and now I can't log in anymore! Anyway, that password didn't work for me. Got any others?",
+  "Yes! Fantastic! That sounds like an excellent name for my new pet wallaby. It is, however, not the password I'm looking for. Keep 'em coming.",
+  "Mmmmmm, wise beyond your years, you are. I wrote this on a piece of parchment, travelled to the garden temple hidden in the Himilayas, and handed the paper to a wise monk who has taken an ancient vow of silence. He took it from me and read it... and then he didn't say anything... because of that vow of silence. I could see in his eyes that he didn't really know why I handed that to him, so I don't think that was the right password.",
+  "So I took your password, and I went to this cool bar that's decorated to look like a speakeasy. I knocked on the door 7 times, and this burly guy answered. He said 'What's the password?', and I told him your thing. He said 'Sorry, that's not it. I can't let you in.' And I said 'What? My <i>most trusted</i> source gave that to me.' He said 'Well your trusted source is wrong.' Well let me tell you what I told him. I told him 'Do you have any idea who my trusted source is!? She'd kick your ass if she was here. How important to do you think you are with your dumb password anyway, huh?' He said 'Woah, calm down, man. Listen, you just have to go to our Facebook page and get the password ther...' 'Screw your Facebook page. If you won't let me in, then I'll just go drink at Olive Garden.' He said 'Hey man, it's not that big a deal, you can just come in if you want.' but it was too late: I was already looking forward to some eggplant parmesan. So anyway, short story is: I don't think you gave me the right password. Also, I have some leftover bread sticks if you want any."
+];
+var lastFailedMessageIndex = -1;
+
+var showMessage = function(text) {
+  message.style.display = "block";
+  message.innerHTML = text;
+}
+
+button.onclick = function() {
+  var password = passwordInput.value;
+  if (password == "hello") {
+    showMessage("Correct!");
+  } else {
+    var index = lastFailedMessageIndex;
+    while (index == lastFailedMessageIndex) {
+      index = Math.floor(Math.random() * failedMessages.length);
+    }
+    lastFailedMessageIndex = index;
+    var failedMessage = failedMessages[index];
+    showMessage(failedMessage);
+  }
+}
+
+passwordInput.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+    button.onclick();
+  }
+});
+
+
+// When the user clicks on the password field, show the message box
+myInput.onfocus = function() {
+  document.getElementById("message").style.display = "block";
+}
+
+// When the user clicks outside of the password field, hide the message box
+myInput.onblur = function() {
+  document.getElementById("message").style.display = "none";
+}
+
+// When the user starts to type something inside the password field
+myInput.onkeyup = function() {
+  // Validate lowercase letters
+  var lowerCaseLetters = /[a-z]/g;
+  if(myInput.value.match(lowerCaseLetters)) {  
+    letter.classList.remove("invalid");
+    letter.classList.add("valid");
+  } else {
+    letter.classList.remove("valid");
+    letter.classList.add("invalid");
+  }
+  
+  // Validate capital letters
+  var upperCaseLetters = /[A-Z]/g;
+  if(myInput.value.match(upperCaseLetters)) {  
+    capital.classList.remove("invalid");
+    capital.classList.add("valid");
+  } else {
+    capital.classList.remove("valid");
+    capital.classList.add("invalid");
+  }
+
+  // Validate numbers
+  var numbers = /[0-9]/g;
+  if(myInput.value.match(numbers)) {  
+    number.classList.remove("invalid");
+    number.classList.add("valid");
+  } else {
+    number.classList.remove("valid");
+    number.classList.add("invalid");
+  }
+  
+  // Validate length
+  if(myInput.value.length >= 8) {
+    length.classList.remove("invalid");
+    length.classList.add("valid");
+  } else {
+    length.classList.remove("valid");
+    length.classList.add("invalid");
+  }
+}
+</script>
+
+</body>
+</html>
